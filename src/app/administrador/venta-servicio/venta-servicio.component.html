@@ -1,0 +1,94 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container-fluid-responsive">
+<app-admin-admin></app-admin-admin>
+
+  <p-fieldset legend="Venta de Pedido">
+    
+    
+    <h3 class="first">Venta de servicio</h3>
+    <div class="row">
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup" style="font-size:18px;">                              
+                <span class="ui-inputgroup-addon" style="width:90px;">Correo</span>   
+                <input type="text" class="form-control"  style=" width:300px;" id="correo" required email placeholder="ejemplo@sisalia.com">
+                <button pButton type="button" icon="fa-search" class="ui-button-secondary"></button> 
+              </div>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup" style="font-size:18px;">                              
+                <span class="ui-inputgroup-addon" style="width:150px;">Servicio</span>   
+                <p-dropdown [options]="servicio" [(ngModel)]="selectServicio"></p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-4" >
+            <div class="ui-inputgroup"  style="font-size:18px;">                                
+              <span class="ui-inputgroup-addon" style="width:120px;">Cantidad</span>
+              <input type="number" class="form-control" pInputText placeholder="0">
+            </div>
+        </div>    
+    </div>
+    <br>
+      <div class="row">
+            
+        <div class="ui-g-12 ui-md-4" style="font-size:16px;">
+          <span class="ui-addon">Entrega</span>
+          <br>
+            <p-radioButton name="s" value="Sucursal" label="Sucursal " [(ngModel)]="val1" inputId="opt1"></p-radioButton>
+            <p-radioButton name="d" value="Domicilio" label="Domicilio " [(ngModel)]="val1" inputId="opt2"></p-radioButton>
+         </div>
+         <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup" style="font-size:18px; width:500px;">                                
+              <span class="ui-inputgroup-addon"  >Telefono</span>
+              <p-inputMask mask="(999) 999-9999" [(ngModel)]="val4" placeholder="(999) 999-9999"></p-inputMask>
+            </div>
+        </div>  
+        <div class="ui-g-12 ui-md-4">
+                <div class="ui-inputgroup"  style="font-size:18px;">                                
+                  <span class="ui-inputgroup-addon" style="width:120px;">Persona</span>
+                  <p-dropdown [options]="persona" [(ngModel)]="SelectPersona"></p-dropdown>
+                </div>
+        </div>    
+
+      </div>
+      <div class="row">
+        <div class="ui-g-12 ui-md-6">
+          <h3 class="first">Servicios</h3>
+          <p-dataTable [value]="cars" [loading]="true">
+              <p-column field="SERVICIO" header="SERVICIO"></p-column>
+              <p-column field="CANTIDAD" header="CANTIDAD"></p-column>
+              <p-column field="COSTO" header="COSTO"></p-column>
+              <p-column field="TOTAL" header="TOTAL"></p-column>
+          </p-dataTable>
+      </div><br><br>  
+      <div class="ui-g-12 ui-md-6">
+          <h3 class="first">Cliente</h3>         
+          <div class="ui-inputgroup"  style="font-size:18px;">                      
+              <span class="ui-inputgroup-addon" style="width:120px;">Nombre</span>
+              <input type="text" class="form-control" pInputText placeholder="Nombre cliente">            
+            </div><br>
+            <div class="ui-inputgroup"  style="font-size:18px;"> 
+              <span class="ui-inputgroup-addon" style="width:120px;">Apellidos</span>
+              <input type="text" class="form-control" pInputText placeholder="Apellidos">
+            </div><br>
+            <div class="ui-inputgroup"  style="font-size:18px;">                                
+                <span class="ui-inputgroup-addon" style="width:120px;">Direccion</span>
+                <input type="text" class="form-control" pInputText placeholder="calle y colonia">
+              </div>
+      </div>          
+    </div>
+    <div class="row">
+    <div class="col-md-4">
+    <a href="#" class="btn btn-outline-primary" style="font-size:20px;">Agregar</a>
+    <a href="#" class="btn btn-danger" style="font-size:20px;">Cancelar</a>
+    </div>
+    <div class="col-md-8">
+    <label><b>IMPORTE TOTAL : </b></label>
+    </div>
+    </div>
+  </p-fieldset>
+  <div class="col-md-12 text-center btn">
+      
+    <a href="#" class="btn btn-outline-primary" style="font-size:20px;">Terminar</a>
+    <a href="#" class="btn btn-danger" style="font-size:20px;">Cancelar</a>
+  </div>
+</div>

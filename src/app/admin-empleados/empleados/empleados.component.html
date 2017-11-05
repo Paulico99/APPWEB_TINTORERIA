@@ -1,0 +1,35 @@
+<app-admin-admin></app-admin-admin>
+
+<div class="card">
+    <h4 class="card-header" style="background-color:rgba(2, 107, 168, 0.712);">EMPLEADOS</h4>
+    <div class="card-body">                
+          <p style="color:rgb(32, 31, 31); font-size:20px;">{{ mensaje }}</p>
+          <h3 style="color:rgb(26, 24, 24);">LISTADO DE EMPLEADOS</h3>
+          <br>
+          <a class="btn btn-outline-primary float-md-right" routerLink="/addempleados" routerLinkActive="Active">
+          AÑADIR NUEVO EMPLEADO
+          </a><br><br>
+        <table class="table table-responsive" style="background-color:rgba(254, 255, 255, 0.788); font-size:18px;">         
+              <thead class="thead-inverse" style="background-color:rgba(230, 234, 236, 0.712);">
+            
+                  <tr class="filters">
+                      <th>NOMBRES</th>
+                      <th>RFC</th>
+                      <th></th>
+                      <th>TELEFONO</th>
+                      <th>NSS</th>
+                      <th>ESTADO</th>
+                  </tr>
+              </thead>
+          <tbody style="background-color:white;">
+              <tr *ngFor="let empleado of empleados">
+                  <td>{{ empleado.nombre}}</td>
+                  <td>{{ empleado.rfc }}<td>
+                  <td>{{ empleado.telefono}}</td>
+                  <td>{{ empleado.nss }}</td>
+                  <td>{{ empleado.estado}}</td>
+              </tr>
+          </tbody>
+          </table>
+    </div>
+</div>

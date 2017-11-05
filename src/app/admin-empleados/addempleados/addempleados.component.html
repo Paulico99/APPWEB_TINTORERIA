@@ -1,0 +1,105 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
+<app-admin-admin></app-admin-admin>
+
+<div class="container-fluid">
+  <div class="card form-group">
+    <h4 class="card-header" style="background-color:rgba(2, 107, 168, 0.712);">Crear cuenta</h4>
+    <div class="card-body">
+      <h4 class="card-title">Añadir Empleado</h4>
+      <form (ngSubmit)="onSubmit()" #formpro="ngForm">
+       <div class="row">
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup" style="font-size:16px;">
+              <span class="input-group-addon" id="nombre" for="nombre" style="width:120px;">nombre</span>
+
+              <input type="text" class="form-control" id="nombre" ngModel name="nombre" placeholder="Nombre del cliente">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SUS NOMBRES !!
+            </p>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="rfc" for="rfc" style="width:120px;">RFC</span>
+
+              <input type="text" class="form-control" id="rfc" ngModel name="rfc" placeholder="rfc del cliente">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck" ></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SUS RFC !!
+            </p>
+          </div>
+
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="telefono" for="telefono" style="width:120px;">Telefono</span>
+
+              <input type="text" class="form-control" id="telefono" ngModel name="telefono" placeholder="Telefono del cliente">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SU TELEFONO !!
+            </p>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="nss" for="nss" style="width:120px;">NSS</span>
+
+              <input type="text" class="form-control" id="nss" ngModel name="nss" placeholder="Numero de seguro social">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SU NSS !!
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="direccion" for="direccion" style="width:120px;">Direccion</span>
+
+              <input type="text" class="form-control" id="direccion" ngModel name="direccion" placeholder="Calle, #numero y colonia">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SU DIRECCION !!
+            </p>
+          </div>
+          <div class="ui-g-12">
+            <div class="form-group">
+              <label for="estado">STATUS</label>
+              <select class="form-control" id="estado" ngModel name="estado">
+                <option value="">SELECCIONE UN ESTADO</option>
+                <option *ngFor="let estado of estados"
+                  [value]="estado"> {{estado}}
+                </option>
+              </select>
+            </div>
+          </div>
+          
+        </div>
+       
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-outline-primary" style="font-size:20px;">CREAR CUENTA
+          </button>
+        </div>
+        <hr>
+      
+        <a class="btn btn-outline-danger text-right" routerLink="/admin-proveedores/proveedores" routerLinkActive="Active">
+          REGRESAR
+          </a>
+      </form>
+    </div>
+  </div>
+</div>

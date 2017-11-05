@@ -1,0 +1,131 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
+<app-admin-admin></app-admin-admin>
+
+<div class="container-fluid">
+  <div class="card form-group">
+    <h4 class="card-header" style="background-color:rgba(2, 107, 168, 0.712);">Crear cuenta</h4>
+    <div class="card-body">
+      <h4 class="card-title">Añadir Proveedor</h4>
+      <form [formGroup]="proveedoresForm" (ngSubmit)="onSubmit()">
+       <div class="row">
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup" style="font-size:16px;">
+              <span class="input-group-addon" id="nombres" for="nombres" style="width:120px;">Nombres</span>
+
+              <input type="text" class="form-control" id="nombres"  formControlName="nombres" placeholder="Nombre del cliente">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SUS NOMBRES !!
+            </p>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="rfc" for="rfc" style="width:120px;">RFC</span>
+
+              <input type="text" class="form-control" id="rfc" formControlName="rfc" placeholder="rfc del cliente">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck" ></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SUS RFC !!
+            </p>
+          </div>
+
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="Telefono" for="Telefono" style="width:120px;">Telefono</span>
+
+              <input type="text" class="form-control" id="telefono" formControlName="telefono" placeholder="Telefono del cliente">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SU TELEFONO !!
+            </p>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="correo" for="correo" style="width:120px;">Correo</span>
+
+              <input type="text" class="form-control" id="correo" formControlName="correo" required email placeholder="ejemplo@sisalia.com">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+
+            </div>
+            <p class="alert alert-danger" >
+              POR FAVOR INTRODUZCA UNA DIRECCION DE CORREO CORRECTA !!
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="direccion" for="direccion" style="width:120px;">Direccion</span>
+
+              <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Calle, #numero y colonia">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA SU DIRECCION !!
+            </p>
+          </div>
+
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="codigopostal" for="codigopostal" style="width:120px;"> CODIGO POSTAL</span>
+              <input type="text" class="form-control" id="codigopostal" formControlName="codigopostal" placeholder="codigo postal del proveedor">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck" ></i>
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA UN CODIGO POSTAL !!
+            </p>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
+              <span class="ui-inputgroup-addon" id="localidad" for="localidad" style="width:120px;"> LOCALIDAD</span>
+              <input type="text" class="form-control" id="localidad" formControlName="localidad" placeholder=" localidad del proveedor">
+              <i class="fa fa-check-circle" ></i>
+              <i class="fa fa-exclamation-circle uncheck"></i>
+
+
+            </div>
+            <p class="alert alert-danger">
+              POR FAVOR INTRODUZCA UNA LOCALIDAD !!
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="estado">ESTADO</label>
+          <select class="form-control" id="estado" formControlName="estado">
+            <option value="">SELECCIONE UN ESTADO</option>
+            <option *ngFor="let estado of estados"
+              [value]="estado"> {{estado}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-outline-primary" style="font-size:20px;"
+          [disabled]="!proveedoresForm.valid"
+          >CREAR CUENTA
+          </button>
+          <p class="alert alert-danger" *ngIf="!proveedoresForm.valid"> POR FAVOR COMPLETE LOS CAMPOS!!</p>
+        </div>
+        <hr>
+      
+        <a class="btn btn-outline-danger text-right" routerLink="/admin-proveedores/proveedores" routerLinkActive="Active">
+          REGRESAR
+          </a>
+      </form>
+    </div>
+  </div>
+</div>
