@@ -7,20 +7,26 @@ getAllproveedores:function(callback){
 return db.query("Select * from proveedor",callback);
 
 },
-getproveedorById:function(id,callback){
+getproveedorById:function(Id,callback){
 
-return db.query("select * from proveedor where Id=?",[id],callback);
+return db.query("select * from proveedor where Id=?",[Id],callback);
 },
+
+getProveedorSearch:function(Id,callback){
+    Id = "%" + Id + "%";
+   return db.query("select * from proveedor where  nombre like ?",[Id,Id],callback);
+},
+
 addproveedor:function(proveedor,callback){
-return db.query("Insert into proveedor values(?,?,?,?,?,?,?,?,?)",[proveedor.Id,proveedor.Nombre,proveedor.RFC,proveedor.Direccion,
-    proveedor.Telefono,proveedor.correo,proveedor.localidad,proveedor.estado,proveedor.estatus],callback);
+return db.query("Insert into proveedor values(?,?,?,?,?,?,?,?,?)",[proveedor.Id,proveedor.nombre,proveedor.RFC,proveedor.Direccion,
+    proveedor.Telefono,proveedor.correo,proveedor.Localidad,proveedor.Estado,proveedor.Estatus],callback);
 },
-deleteproveedor:function(id,callback){
+deleteproveedor:function(Id,callback){
  return db.query("delete from proveedor where Id=?",[Id],callback);
 },
-updateproveedor:function(id,proveedor,callback){
- return db.query("update proveedor set telefono=?,correo=?,estatus=? where Id=?",[proveedor.telefono,proveedor.correo,
-    proveedor.estatus,id],callback);
+updateproveedor:function(Id,proveedor,callback){
+ return db.query("update proveedor set Telefono=?,correo=?,Estatus=? where Id=?",[proveedor.Telefono,proveedor.correo,
+    proveedor.Estatus,Id],callback);
 }
 
 };

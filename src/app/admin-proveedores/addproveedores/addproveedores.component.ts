@@ -2,6 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
 
+
+import {SelectItem} from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DropdownModule} from 'primeng/primeng';
+import {MenuItem} from 'primeng/primeng';
+import {InputMaskModule} from 'primeng/primeng';
+import {RadioButtonModule} from 'primeng/primeng';
+import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {ButtonModule} from 'primeng/primeng';
+
+import { Router, ActivatedRoute } from '@angular/router';
+import { Proveedor } from '../proveedores/proveedores.modelo';
 import { ProveedoresService } from '../../servicios/proveedores.service';
 
 @Component({
@@ -11,57 +23,71 @@ import { ProveedoresService } from '../../servicios/proveedores.service';
 })
 export class AddproveedoresComponent implements OnInit {
 
-
-  proveedoresForm: FormGroup;
+  @ViewChild('formpro') formpro: NgForm;  
+  ProveedoresForm : FormGroup;
   proveedor: any;
 
-estados : string[] = [
-  'Aguascalientes','Chihuahua','Baja California','Sonora','Sinaloa','Nayarit','Jalisco','Colima','Guerrero','Oaxaca',
-  'Chiapas','Quintana Roo', 'Yucatan','Campeche','Veracruz' ,'Tabasco','Puebla'
-]
+  //Estatus: SelectItem[];
+  //Estado: SelectItem[];
+  //status: SelectItem[];
+  
+  //Selectestatus: string;
+  //Selectestado: string;
+  
+  Estatu : string[] = [
+    'ACTIVO','INACTIVO'
+   ]
+   estados : string[] = [
+     'MORAL','FISICA'
+   ]
 
-saveProveedores(){
-  const saveProveedores = {
-    nombres: this.proveedoresForm.get('nombres').value,
-    rfc: this.proveedoresForm.get('rfc').value,
-    direccion: this.proveedoresForm.get('direccion').value,
-    codigopostal: this.proveedoresForm.get('codigopostal').value,
-    localidad: this.proveedoresForm.get('localidad').value,
-    estado: this.proveedoresForm.get('estado').value,
-    telefono: this.proveedoresForm.get('telefono').value,
-    correo: this.proveedoresForm.get('correo').value,
+  saveRegistro(){
+    const saveRegistro = {
+      nombre: this.ProveedoresForm.get('nombre').value,
+      RFC: this.ProveedoresForm.get('RFC').value,
+      Direccion: this.ProveedoresForm.get('Direccion').value,
+      Telefono: this.ProveedoresForm.get('Telefono').value,
+      correo: this.ProveedoresForm.get('correo').value,      
+      Localidad: this.ProveedoresForm.get('Localidad').value,
+      Estado: this.ProveedoresForm.get('Estado').value,
+      Estatus: this.ProveedoresForm.get('Estatus').value,
     
-  };
-  return saveProveedores;
-}
-constructor( private pf: FormBuilder) { 
-  this.proveedoresForm = this.pf.group( {
-    nombres : '',
-    rfc : '',
-    direccion : '',
-    codigopostal :'',
-    localidad: '',
-    estado: '',
-    telefono : null,
-    correo : '',
-  });
-}
+     
+    };
+    return saveRegistro;
+  }
 
-onSubmit(){
-  this.proveedor = this.saveProveedores();
-}
+  onSubmit(){
+    this.proveedor = this.saveRegistro();
+    this.proveedorService.postProveedor(this.proveedor).subscribe(newpres => {this.router.navigate(['admin-proveedores/proveedores'])})
+  }
+
+  constructor( private rc: FormBuilder,private proveedorService: ProveedoresService, private router: Router , private activatedRoute: ActivatedRoute) {
+    /*
+    this.Estatus = [];
+    this.Estatus.push({label:'Seleccione Status del Proveedor', value:null});
+    this.Estatus.push({label:'Activo',value:'ACTIVO'});
+    this.Estatus.push({label:'Inactivo',value:'INACTIVO'});
+    
+    this.Estado = [];
+    this.Estado.push({label:'Seleccione Estado del Proveedor', value:null});
+    this.Estado.push({label:'Fisico',value:'FISICO'});
+    this.Estado.push({label:'Moral',value:'MORAL'});
+    */
+  }
+
   ngOnInit() {
-    this.proveedoresForm = this.pf.group({
-      nombres: ['', Validators.required],
-      rfc:  ['', Validators.required],
-      direccion:  ['', Validators.required],
-      codigopostal:  ['', Validators.required],
-      localidad:  ['', Validators.required],
-      estado:  ['', Validators.required],
-      telefono:  ['', Validators.required],
-      correo:  ['', Validators.required],
-      
+    this.ProveedoresForm = this.rc.group({
+      nombre : ['', Validators.required],
+      RFC: ['', Validators.required],
+      Direccion: ['', Validators.required],
+      Telefono: ['', Validators.required],      
+      correo: ['', Validators.required],
+      Localidad: ['', Validators.required],
+      Estado: ['', Validators.required],
+      Estatus: ['', Validators.required],
     });
   }
 
 }
+ 

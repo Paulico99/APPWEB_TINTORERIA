@@ -17,24 +17,38 @@
         <a class="nav-link" href="#" style="color:black;">CONTACTO</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="#" style="color:black;">PEDIDOS</a>
-      </li>
-
-    </ul>
-    <ul class="navbar-nav navbar-right">
-      <li class="nav-item" style="width:220px;">
-        <a class="nav-link" routerLink="/Usuarios/accesar-usuario"><button class="btn btn-primary btn-md" id="entrar"  style="width:200px;"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button></a>
-      </li>
-      <li class="nav-item" style="width:230px;">
-          <a class="nav-link" routerLink="/Usuarios/add-registrar"><button class="btn btn-outline-info btn-md" id="entrar" style="width:200px;"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrar</button></a>
+          <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" style="width:300px; "type="text" placeholder="Buscar Servicio" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search" aria-hidden="true"> </i> Buscar</button>
+            </form>
       </li>
 
     </ul>
     
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" style="width:300px; "type="text" placeholder="Buscar Servicio" aria-label="Search">
-      <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search" aria-hidden="true"> </i> Buscar</button>
-    </form>
+
+    <ul class="navbar-nav navbar-right" >
+      <li class="nav-item" style="width:220px;" *ngIf="!isAuth()">
+        <a class="nav-link" routerLink="/Usuarios/iniciosesion"><button class="btn btn-primary btn-md" id="entrar"  style="width:200px;"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button></a>
+      </li>
+      
+      <li class="nav-item" *ngIf="isAuth() && isAdmin()" style="width:230px;">
+          <a class="nav-link" ><p-splitButton label="Administrador" icon="fa-lock" [model]="items" >
+             Configuracion</p-splitButton></a>
+      </li>
+
+      <li class="nav-item" *ngIf="isAuth() && !isAdmin()" style="width:230px;">
+        <a class="nav-link" ><p-splitButton label="Usuario" icon="fa-lock" [model]="items2" >
+           Configuracion</p-splitButton></a>
+    </li> 
+
+    <li class="nav-item" *ngIf="isAuth()">
+      <a class="nav-link" routerLink="/Usuarios/iniciosesion"><button class="btn btn-outline-danger btn-md" id="entrar" style="width:200px; height:32px;" (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i>CERRAR SESION</button></a>
+      
+    </li>
+    
+    </ul>
+    
+    
   </div>
 </nav>
 

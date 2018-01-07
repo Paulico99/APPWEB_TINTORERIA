@@ -1,30 +1,79 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
 
+    
+<ul class="nav nav-pills nav-tabs nav-fill nav-justified" *ngIf="isAuth() && isAdmin()">
+    <!--
+    <li class="nav-item" *ngIf="isAuth()">
+      <a class="nav-link "  routerLink="/administrador/venta-servicio" style="font-size:18px;"><i class="fa fa-user" aria-hidden="true"></i> Ventas</a>
+    </li>
+-->
+    <li class="nav-item dropdown" *ngIf="isAuth() && isAdmin()">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink2" style="font-size:18px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i> Ventas
+            </a>
+            <div class="dropdown-menu" style="font-size:18px;" aria-labelledby="navbarDropdownMenuLink2">
+              <a class="dropdown-item" style="font-size:18px;" routerLink="/administrador/venta-servicio"><i class="fa fa-print" aria-hidden="true"></i> Venta Pedido</a>
+              <a class="dropdown-item" style="font-size:18px;" routerLink="/administrador/admin-pedidos"><i class="fa fa-money" aria-hidden="true"></i> Pedidos</a>
+              
+            </div>
+          </li>
 
-<ul class="nav nav-pills nav-tabs nav-fill nav-justified">
-    <li class="nav-item">
-      <a class="nav-link " routerLink="/administrador/venta-servicio" style="font-size:20px;"><i class="fa fa-user" aria-hidden="true"></i> Ventas Cliente</a>
+    <li class="nav-item dropdown" *ngIf="isAuth() && isAdmin()">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" style="font-size:18px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Compras
+            </a>
+            <div class="dropdown-menu" style="font-size:18px;" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" style="font-size:18px;" routerLink="/admin-compras/facturas"><i class="fa fa-print" aria-hidden="true"></i> Facturas</a>
+              <a class="dropdown-item" style="font-size:18px;" routerLink="/admin-proveedores/proveedores"><i class="fa fa-list-alt" aria-hidden="true"></i> Proveedores</a>
+              <a class="dropdown-item" style="font-size:18px;" routerLink="/admin-compras/compras" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Presupuesto</a>
+            </div>
+          </li>
+    <!--
+    <li class="nav-item" *ngIf="isAuth()">
+      <a class="nav-link" routerLink="/admin-compras/compras" style="font-size:18px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Compras</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/Usuarios/pedidos" style="font-size:20px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Compras</a>
+    
+    <li class="nav-item" *ngIf="isAuth()">
+            <a class="nav-link" routerLink="/admin-compras/facturas" style="font-size:18px;"><i class="fa fa-print" aria-hidden="true"></i> Facturas</a>
+          </li>
+        
+    <li class="nav-item" *ngIf="isAuth()">
+      <a class="nav-link " routerLink="/administrador/admin-pedidos" style="font-size:18px;"><i class="fa fa-money" aria-hidden="true"></i> Pedidos</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link " routerLink="/administrador/admin-pedidos" style="font-size:20px;"><i class="fa fa-money" aria-hidden="true"></i> Pedidos</a>
+
+    <li class="nav-item" *ngIf="isAuth()">
+        <a class="nav-link " routerLink="/admin-proveedores/proveedores" style="font-size:18px;"><i class="fa fa-list-alt" aria-hidden="true"></i> Proveedor</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link " routerLink="/admin-proveedores/proveedores" style="font-size:20px;"><i class="fa fa-list-alt" aria-hidden="true"></i> Proveedores</a>
+-->
+    <li class="nav-item" *ngIf="isAuth()  && isAdmin()">
+        <a class="nav-link " routerLink="/admin-empleados/empleados" style="font-size:18px;"><i class="fa fa-address-book-o" aria-hidden="true"></i> Empleados</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link " routerLink="/admin-empleados/empleados" style="font-size:20px;"><i class="fa fa-address-book-o" aria-hidden="true"></i> Empleados</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link " href="#!" style="font-size:20px;"><i class="fa fa-list-alt" aria-hidden="true"></i> Facturacion </a>
+    <li class="nav-item" *ngIf="isAuth()  && isAdmin()">
+        <a class="nav-link " routerLink="/admin-clientes/clientes" style="font-size:18px;"><i class="fa fa-id-card-o" aria-hidden="true"></i> Clientes </a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#!"><button class="btn btn-outline-danger btn-md" id="salir"  style="width:200px; font-size:20px;"><i class="fa fa-sign-out" aria-hidden="true"></i>Salir</button></a>
+      <li class="nav-item" *ngIf="isAuth()  && isAdmin()">
+        <a class="nav-link " routerLink="/admin-productos/productos" style="font-size:18px;"><i class="fa fa-tags" aria-hidden="true"></i> Producto</a>
       </li>
+      
+      <li class="nav-item" *ngIf="isAuth()  && isAdmin()">
+          <a class="nav-link" routerLink="/admin-servicios/servicios"  style="font-size:18px;"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Prendas</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isAuth()  && isAdmin()">
+            <a class="nav-link" routerLink="/admin-servicios-prenda/servicios"  style="font-size:18px;"><i class="fa fa-list" aria-hidden="true"></i> Servicios</a>
+        </li>
+
+        
   </ul>
   <br>
+  <!--<div *ngIf="cargando" class="text-center" style="padding-top: 60px;">
+        <img src="../../../assets/62159.gif">
+    </div>
+-->
+  <!--
+  <h1 class="text-center">B I E N V E N I D O</h1>
+  <app-galeria-fotos></app-galeria-fotos>
+  -->
   <!--
   <h3  style="font-size:25px; color:red;" class="text-left">QUE ONDAS MARIO</h3>
   <span class="ui-float-label" style="font-size:25px; color:red;">

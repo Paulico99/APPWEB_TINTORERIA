@@ -1,8 +1,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container-fluid-responsive">
 <app-admin-admin></app-admin-admin>
-
-  <p-fieldset legend="Venta de Pedido">
+<!--<form [formGroup]="registroVenta" (ngSubmit)="onSubmit()">-->
+  <p-fieldset legend="Ventas">
     
     
     <h3 class="first">Venta de servicio</h3>
@@ -10,85 +10,190 @@
         <div class="ui-g-12 ui-md-4">
             <div class="ui-inputgroup" style="font-size:18px;">                              
                 <span class="ui-inputgroup-addon" style="width:90px;">Correo</span>   
-                <input type="text" class="form-control"  style=" width:300px;" id="correo" required email placeholder="ejemplo@sisalia.com">
-                <button pButton type="button" icon="fa-search" class="ui-button-secondary"></button> 
+               
+              <select class="form-control" id="id_cliente"  [(ngModel)]="id_cliente">
+                <option value="">SELECCIONE UN CLIENTE</option>
+                <option *ngFor="let id_cliente of Clientes" value="{{id_cliente.id}}">
+                   {{id_cliente.email}}                           
+                </option>
+            </select>
               </div>
+              <a routerLink="/add-registrar" class="btn btn-outline-primary text-center" style="font-size:20px;">Registrar Cliente</a>              
+              
         </div>
         <div class="ui-g-12 ui-md-4">
             <div class="ui-inputgroup" style="font-size:18px;">                              
-                <span class="ui-inputgroup-addon" style="width:150px;">Servicio</span>   
-                <p-dropdown [options]="servicio" [(ngModel)]="selectServicio"></p-dropdown>
+                <span class="ui-inputgroup-addon" style="width:150px;">Prenda</span>   
+                <select class="form-control" id="id_servicio" [(ngModel)]="id_servicio" >
+                  <option value="">SELECCIONE UNA PRENDA</option>
+                  <option *ngFor="let id_servicio of Servicios"  value="{{id_servicio.ID}}">
+                  {{id_servicio.Nombre}} - $ {{id_servicio.Precio}}
+                  </option>
+              </select>
+
             </div>
         </div>
         <div class="ui-g-12 ui-md-4" >
             <div class="ui-inputgroup"  style="font-size:18px;">                                
               <span class="ui-inputgroup-addon" style="width:120px;">Cantidad</span>
-              <input type="number" class="form-control" pInputText placeholder="0">
+              <input type="number" class="form-control" pInputText placeholder="0" [(ngModel)]="cantidad">
             </div>
         </div>    
     </div>
     <br>
       <div class="row">
             
-        <div class="ui-g-12 ui-md-4" style="font-size:16px;">
+        <div class="ui-g-12 ui-md-6" style="font-size:16px;">
           <span class="ui-addon">Entrega</span>
           <br>
-            <p-radioButton name="s" value="Sucursal" label="Sucursal " [(ngModel)]="val1" inputId="opt1"></p-radioButton>
-            <p-radioButton name="d" value="Domicilio" label="Domicilio " [(ngModel)]="val1" inputId="opt2"></p-radioButton>
-         </div>
-         <div class="ui-g-12 ui-md-4">
-            <div class="ui-inputgroup" style="font-size:18px; width:500px;">                                
-              <span class="ui-inputgroup-addon"  >Telefono</span>
-              <p-inputMask mask="(999) 999-9999" [(ngModel)]="val4" placeholder="(999) 999-9999"></p-inputMask>
-            </div>
-        </div>  
-        <div class="ui-g-12 ui-md-4">
+          
+            <p-radioButton name="s" value="Sucursal" label="Sucursal "   inputId="opt1"></p-radioButton>
+            <p-radioButton name="d" value="Domicilio" label="Domicilio "   inputId="opt2"></p-radioButton>
+          
+          <!--
+         <label class="custom-control custom-radio">
+            <input id="sucursal" name="sucursal" type="radio" value="sucursal" formControlName="entrega"  [(ngModel)]="entrega" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Sucursal</span>
+          </label>
+          <label class="custom-control custom-radio">
+            <input id="domicilio" name="domicilio" type="radio" value="domicilio" formControlName="entrega" [(ngModel)]="entrega" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Domicilio</span>
+          </label>
+        -->
+      </div>
+        
+        <div class="ui-g-12 ui-md-6">
                 <div class="ui-inputgroup"  style="font-size:18px;">                                
-                  <span class="ui-inputgroup-addon" style="width:120px;">Persona</span>
-                  <p-dropdown [options]="persona" [(ngModel)]="SelectPersona"></p-dropdown>
+                  <span class="ui-inputgroup-addon" style="width:120px;">Servicio</span>
+                  <select class="form-control" id="t_prenda" [(ngModel)]="t_prenda">
+                    <option value="">SELECCIONE UN SERVICIO</option>
+                    <option *ngFor="let idservicio of Prendas"  value="{{idservicio.idservicio}}">
+                    {{idservicio.nombre}} -  {{idservicio.descuento}} %
+                    </option>
+                    
+                  </select>
+                  <!--
+                  <p-dropdown [options]="persona" [(ngModel)]="Selectpersona"></p-dropdown>-->
                 </div>
         </div>    
 
       </div>
       <div class="row">
-        <div class="ui-g-12 ui-md-6">
-          <h3 class="first">Servicios</h3>
-          <p-dataTable [value]="cars" [loading]="true">
-              <p-column field="SERVICIO" header="SERVICIO"></p-column>
-              <p-column field="CANTIDAD" header="CANTIDAD"></p-column>
-              <p-column field="COSTO" header="COSTO"></p-column>
-              <p-column field="TOTAL" header="TOTAL"></p-column>
-          </p-dataTable>
-      </div><br><br>  
-      <div class="ui-g-12 ui-md-6">
-          <h3 class="first">Cliente</h3>         
-          <div class="ui-inputgroup"  style="font-size:18px;">                      
-              <span class="ui-inputgroup-addon" style="width:120px;">Nombre</span>
-              <input type="text" class="form-control" pInputText placeholder="Nombre cliente">            
-            </div><br>
-            <div class="ui-inputgroup"  style="font-size:18px;"> 
-              <span class="ui-inputgroup-addon" style="width:120px;">Apellidos</span>
-              <input type="text" class="form-control" pInputText placeholder="Apellidos">
-            </div><br>
-            <div class="ui-inputgroup"  style="font-size:18px;">                                
-                <span class="ui-inputgroup-addon" style="width:120px;">Direccion</span>
-                <input type="text" class="form-control" pInputText placeholder="calle y colonia">
-              </div>
-      </div>          
+        <div class="col-md-6">
+          <button href="#" class="btn btn-outline-primary"  (click)="agregar(); onSubmit();" (click)="limpiar()" style="font-size:20px;"><i class="fa fa-plus-square" aria-hidden="true"></i>
+             AGREGAR</button>
+          </div>
+          <div class="col-md-6">
+          <h3 style="text-transform: uppercase;" *ngIf="id_cliente">FOLIO ::: {{id_cliente}}  CLIENTE ::: {{get_nombre_cliente(id_cliente,i)}}{{clientenombre[i]}}</h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="ui-g-12 ui-md-12">
+            <table class="table table-responsive" style="background-color:rgba(254, 255, 255, 0.788); font-size:18px;">         
+                <thead class="thead-inverse" style="background-color:rgba(230, 234, 236, 0.712);">
+                  <tr align="center"  class="filters">
+                    <th>ID</th>
+                    <th>PRENDA</th>
+                    <th>SERVICIO</th>
+                    <th>PRECIO</th>
+                    <th>CANTIDAD</th> 
+                    <th>TOTAL</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <br>
+                <tbody style="background-color:white;">
+                  <tr *ngFor="let venta of detalle;let i= index" >
+                    <td >{{ i }}</td>
+                    <td >{{get_name(venta.id_servicio,i)}}{{servicionombre[i]}}</td>
+                    <td>{{get_prenda(venta.t_prenda,i)}}{{prendanombre[i]}} </td>                    
+                    <td>$ {{get_precio(venta.id_servicio,i)}}{{servicioprecio[i]}}</td>
+                    <td>{{venta.cantidad}}</td> 
+                    <td><b>$ {{get_prenda_descuento(venta.t_prenda,i)}}{{get_precio(venta.id_servicio,i)}}{{((servicioprecio[i] * venta.cantidad) * prendadescuento[i]) / 10 }}</b></td>
+                    <td><button type="button" class="btn btn-success" (click)="select(i)">EDITAR</button>
+                    <td><button type="button" class="btn btn-danger" (click)="eliminar()">ELIMINAR</button>   
+                    </td>
+                  </tr>
+                </tbody>
+              </table><br>
+      </div><br><br> 
+      <!-- 
+      <div class="ui-g-12 ui-md-4 text-center">
+          <h3>No se encuentra el cliente? - Presione el boton</h3>
+          <a routerLink="/add-registrar" class="btn btn-outline-primary text-center" style="font-size:20px;">Registrar Cliente</a>
+          
+      </div>   
+    -->       
     </div>
+    <div class="container-fluid">
     <div class="row">
-    <div class="col-md-4">
-    <a href="#" class="btn btn-outline-primary" style="font-size:20px;">Agregar</a>
-    <a href="#" class="btn btn-danger" style="font-size:20px;">Cancelar</a>
-    </div>
-    <div class="col-md-8">
-    <label><b>IMPORTE TOTAL : </b></label>
-    </div>
-    </div>
+        
+            <div class="col-sm-6">
+              <h4> IMPORTE</h4>
+              <input type="text" placeholder="0" class="form-control"  [(ngModel)]="df" disabled> <br>
+            </div>
+            <div class="col-sm-6">
+              <h4> IVA </h4>
+              <input type="text" placeholder="0" class="form-control" [(ngModel)]="totaliva" disabled> <br>
+            </div>
+          </div>
+        </div>
   </p-fieldset>
+<!--</form>-->
   <div class="col-md-12 text-center btn">
-      
-    <a href="#" class="btn btn-outline-primary" style="font-size:20px;">Terminar</a>
+    
+    <button type="button" class="btn btn-outline-success"  style="font-size:20px;" data-toggle="modal" data-target="#exampleModal3">$ PAGAR</button>          
     <a href="#" class="btn btn-danger" style="font-size:20px;">Cancelar</a>
   </div>
 </div>
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModal3Label">Pagar / Abono</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="ui-g-12">
+                  <div class="ui-inputgroup" style="font-size:18px;">
+                    <b><span class="input-group-addon" id="pago" for="pago" style="width:120px;">Total a Pagar </span></b>
+                    <input type="number" class="form-control" id="pago" [(ngModel)]="totalpagar"  disabled placeholder="$.00">
+                    
+                  </div>
+                  <br>
+                  <div class="ui-inputgroup" style="font-size:18px;">
+                    <span class="input-group-addon" id="pagar" for="pagar" style="width:120px;">Pago / Abono </span>
+                    <input type="number" class="form-control" id="pagar"  [(ngModel)]="abono" placeholder=".00">
+                    
+                  </div>
+                </div>
+                <div class="ui-g-12">
+                <div class="ui-inputgroup" style="font-size:18px;">
+                  <span class="ui-inputgroup-addon">$</span>                    
+                <!--<span class="input-group-addon" id="pagar" for="pagar" style="width:120px;">Debe  </span>
+                --> <input type="number" class="form-control" id="pagar"  [(ngModel)]="cambio" placeholder=".00" disabled>
+                  <span class="ui-inputgroup-addon">.00</span>      
+                  
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-outline-success" (click)="get_pagar()">$ Pagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

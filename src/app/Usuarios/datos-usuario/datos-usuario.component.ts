@@ -10,7 +10,7 @@ export class DatosUsuarioComponent implements OnInit {
 
   registroCliente : FormGroup;
   registrarCliente: any;
-  telefono: any;
+  telefono: any ;
   direccion: any;
   correo: any;
   contrasena: any;
@@ -46,13 +46,13 @@ export class DatosUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.registroCliente = this.rc.group({
-      nombres : ['', Validators.required],
-      apellidos: ['', Validators.required],
-      telefono: ['', Validators.required],
-      direccion: ['', Validators.required],      
-      correo: ['', Validators.required],
-      contrasena: ['', Validators.required],
-      recontrasena: ['', Validators.required],
+      nombres : ['Pulsoro', Validators.required],
+      apellidos: ['Soto', Validators.required],
+      telefono: ['6681018321', Validators.required],
+      direccion: ['bachoco 1780 jiji', Validators.required],      
+      correo: ['pul123456@hotmail.com', Validators.required],
+      contrasena: ['*********', Validators.required],
+      recontrasena: ['*********', Validators.required],
     });
     this.onChanges();
   }

@@ -6,119 +6,140 @@
     <h4 class="card-header" style="background-color:rgba(2, 107, 168, 0.712);">Crear cuenta</h4>
     <div class="card-body">
       <h4 class="card-title">Añadir Proveedor</h4>
-      <form [formGroup]="proveedoresForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="ProveedoresForm" (ngSubmit)="onSubmit()">
        <div class="row">
           <div class="ui-g-12 ui-md-6">
             <div class="ui-inputgroup" style="font-size:16px;">
-              <span class="input-group-addon" id="nombres" for="nombres" style="width:120px;">Nombres</span>
+              <span class="input-group-addon" id="nombre" for="nombre" style="width:120px;">nombre</span>
 
-              <input type="text" class="form-control" id="nombres"  formControlName="nombres" placeholder="Nombre del cliente">
-              <i class="fa fa-check-circle" ></i>
-              <i class="fa fa-exclamation-circle uncheck"></i>
+              <input type="text" class="form-control" id="nombre"  formControlName="nombre" placeholder="Nombre del cliente">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.nombre.valid" ></i>
+              <i class="fa fa-exclamation-circle uncheck"  *ngIf="ProveedoresForm.controls.nombre.invalid && ProveedoresForm.controls.nombre.touched"></i>
 
             </div>
-            <p class="alert alert-danger">
-              POR FAVOR INTRODUZCA SUS NOMBRES !!
+            <p class="alert alert-danger"  *ngIf="ProveedoresForm.controls.nombre.invalid && ProveedoresForm.controls.nombre.touched">
+              POR FAVOR INTRODUZCA SUS NOMBRE !!
             </p>
           </div>
           <div class="ui-g-12 ui-md-6">
             <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="rfc" for="rfc" style="width:120px;">RFC</span>
+              <span class="ui-inputgroup-addon" id="RFC" for="RFC" style="width:120px;">RFC</span>
 
-              <input type="text" class="form-control" id="rfc" formControlName="rfc" placeholder="rfc del cliente">
-              <i class="fa fa-check-circle" ></i>
-              <i class="fa fa-exclamation-circle uncheck" ></i>
+              <input type="text" class="form-control" id="RFC" formControlName="RFC" placeholder="RFC del cliente">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.RFC.valid"></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.RFC.invalid && ProveedoresForm.controls.RFC.touched" ></i>
 
             </div>
-            <p class="alert alert-danger">
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.RFC.invalid && ProveedoresForm.controls.RFC.touched">
               POR FAVOR INTRODUZCA SUS RFC !!
             </p>
           </div>
 
           <div class="ui-g-12 ui-md-6">
             <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="Telefono" for="Telefono" style="width:120px;">Telefono</span>
+              <span class="ui-inputgroup-addon" id="Direccion" for="Direccion" style="width:120px;">Direccion</span>
 
-              <input type="text" class="form-control" id="telefono" formControlName="telefono" placeholder="Telefono del cliente">
-              <i class="fa fa-check-circle"></i>
-              <i class="fa fa-exclamation-circle uncheck"></i>
+              <input type="text" class="form-control" id="Direccion" formControlName="Direccion" placeholder="Direccion del cliente">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.Direccion.valid"></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.Direccion.invalid && ProveedoresForm.controls.Direccion.touched"></i>
 
             </div>
-            <p class="alert alert-danger">
-              POR FAVOR INTRODUZCA SU TELEFONO !!
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.Direccion.invalid && ProveedoresForm.controls.Direccion.touched">
+              POR FAVOR INTRODUZCA SU DIRECCION !!
             </p>
           </div>
           <div class="ui-g-12 ui-md-6">
             <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="correo" for="correo" style="width:120px;">Correo</span>
+              <span class="ui-inputgroup-addon" id="Telefono" for="Telefono" style="width:120px;">Telefono</span>
 
-              <input type="text" class="form-control" id="correo" formControlName="correo" required email placeholder="ejemplo@sisalia.com">
-              <i class="fa fa-check-circle"></i>
-              <i class="fa fa-exclamation-circle uncheck"></i>
+              <input type="number" class="form-control" id="Telefono" formControlName="Telefono" placeholder="Telefono del cliente">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.Telefono.valid"></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.Telefono.invalid && ProveedoresForm.controls.Telefono.touched"></i>
 
 
             </div>
-            <p class="alert alert-danger" >
-              POR FAVOR INTRODUZCA UNA DIRECCION DE CORREO CORRECTA !!
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.Telefono.invalid && ProveedoresForm.controls.Telefono.touched">
+              POR FAVOR INTRODUZCA SU Telefono CORRECTA !!
             </p>
           </div>
         </div>
         <div class="row">
           <div class="ui-g-12">
             <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="direccion" for="direccion" style="width:120px;">Direccion</span>
+              <span class="ui-inputgroup-addon" id="correo" for="correo" style="width:120px;">CORREO</span>
 
-              <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Calle, #numero y colonia">
-              <i class="fa fa-check-circle"></i>
-              <i class="fa fa-exclamation-circle uncheck"></i>
+              <input type="text" class="form-control" id="correo" formControlName="correo" required email placeholder="ejemplo@sisalia.com" placeholder="CORREO">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.correo.valid"></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.correo.invalid && ProveedoresForm.controls.correo.touched"></i>
 
             </div>
-            <p class="alert alert-danger">
-              POR FAVOR INTRODUZCA SU DIRECCION !!
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.correo.invalid && ProveedoresForm.controls.correo.touched">
+              POR FAVOR INTRODUZCA SU CORREO !!
             </p>
           </div>
 
-          <div class="ui-g-12 ui-md-6">
+          <div class="ui-g-12">
             <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="codigopostal" for="codigopostal" style="width:120px;"> CODIGO POSTAL</span>
-              <input type="text" class="form-control" id="codigopostal" formControlName="codigopostal" placeholder="codigo postal del proveedor">
-              <i class="fa fa-check-circle" ></i>
-              <i class="fa fa-exclamation-circle uncheck" ></i>
-
-            </div>
-            <p class="alert alert-danger">
-              POR FAVOR INTRODUZCA UN CODIGO POSTAL !!
-            </p>
-          </div>
-          <div class="ui-g-12 ui-md-6">
-            <div class="ui-inputgroup inputgroup-lg" style="font-size:16px;">
-              <span class="ui-inputgroup-addon" id="localidad" for="localidad" style="width:120px;"> LOCALIDAD</span>
-              <input type="text" class="form-control" id="localidad" formControlName="localidad" placeholder=" localidad del proveedor">
-              <i class="fa fa-check-circle" ></i>
-              <i class="fa fa-exclamation-circle uncheck"></i>
+              <span class="ui-inputgroup-addon" id="Localidad" for="Localidad" style="width:120px;"> LOCALIDAD</span>
+              <input type="text" class="form-control" id="Localidad" formControlName="Localidad" placeholder=" Localidad del proveedor">
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.Localidad.valid" ></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.Localidad.invalid && ProveedoresForm.controls.Localidad.touched"></i>
 
 
             </div>
-            <p class="alert alert-danger">
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.Localidad.invalid && ProveedoresForm.controls.Localidad.touched">
               POR FAVOR INTRODUZCA UNA LOCALIDAD !!
             </p>
           </div>
         </div>
-        <div class="form-group">
-          <label for="estado">ESTADO</label>
-          <select class="form-control" id="estado" formControlName="estado">
-            <option value="">SELECCIONE UN ESTADO</option>
-            <option *ngFor="let estado of estados"
-              [value]="estado"> {{estado}}
-            </option>
-          </select>
+        <div class="row">
+          <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup"  style="font-size:18px;">                                
+                <span class="ui-inputgroup-addon" for="Estatus" style="width:120px;">ESTATUS</span>
+                <!--<p-dropdown [options]="Estatus" [(ngModel)]="Selectestatus" formControlName="Estatus" ></p-dropdown>
+                -->
+                <select class="form-control" id="Estatus" formControlName="Estatus">
+                  <option value="">SELECCIONE UN ESTATUS</option>
+                  <option *ngFor="let Estatus of Estatu"
+                    [value]="Estatus"> {{Estatus}}
+                  </option>
+                </select>
+                <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.Estatus.valid"></i>
+                <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.Estatus.invalid && ProveedoresForm.controls.Estatus.touched"></i>
+          
+              </div>
+              <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.Estatus.invalid && ProveedoresForm.controls.Estatus.touched">
+                  POR FAVOR INTRODUZCA SU ESTATUS !!
+                </p>
+          </div>
+    
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup"  style="font-size:18px;">                                
+              <span class="ui-inputgroup-addon" for="Estado" style="width:120px;">ESTADO</span>
+             <!-- <p-dropdown [options]="Estado" [(ngModel)]="Selectestado" formControlName="Estado" ></p-dropdown>
+             -->
+              <select class="form-control" id="Estado" formControlName="Estado">
+                <option value="">SELECCIONE UN ESTADO</option>
+                <option *ngFor="let Estado of estados"
+                  [value]="Estado"> {{Estado}}
+                </option>
+              </select>   
+          
+              <i class="fa fa-check-circle" *ngIf="ProveedoresForm.controls.Estado.valid"></i>
+              <i class="fa fa-exclamation-circle uncheck" *ngIf="ProveedoresForm.controls.Estado.invalid && ProveedoresForm.controls.Estado.touched"></i>
+        
+            </div>
+            <p class="alert alert-danger" *ngIf="ProveedoresForm.controls.Estado.invalid && ProveedoresForm.controls.Estado.touched">
+                POR FAVOR INTRODUZCA SU ESTADO !!
+              </p>
+        </div>
         </div>
         <div class="col-md-12 text-center">
           <button type="submit" class="btn btn-outline-primary" style="font-size:20px;"
-          [disabled]="!proveedoresForm.valid"
+          [disabled]="!ProveedoresForm.valid"
           >CREAR CUENTA
           </button>
-          <p class="alert alert-danger" *ngIf="!proveedoresForm.valid"> POR FAVOR COMPLETE LOS CAMPOS!!</p>
+          <p class="alert alert-danger" *ngIf="!ProveedoresForm.valid"> POR FAVOR COMPLETE LOS CAMPOS!!</p>
         </div>
         <hr>
       
